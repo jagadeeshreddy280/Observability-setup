@@ -1,19 +1,28 @@
 ##Obeservability platform Used to Track the Logs, Metrics, Traces Of the Application.
 
 1.cloud platform         :   AWS
+
 2.logs                   :   Loki
+
 3.Metrics                : Prometheus,Mimir
+
 4.Traces                 : Tempo
+
 5.Opentelemetry is used to connect loki,mimir,Tempo as expoter to grafana
+
 6.Alerts                 : MS Teams,Pager Duty, Email
+
 7.Automation       -     : Terraform
+
 8.Storing data           : Amazon S3
 
 ------------------------------------------------------------------------------
 Order for setting up the platform for monitoring
 
 >>Need to insatll eks cluster,enable cluster-autoscalar,loadbalancer
+
 >>Install Kubectl,helm,Terraform
+
 1.Grafana
 2.loki
 3.promtail
