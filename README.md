@@ -7,10 +7,11 @@ linkedin : https://www.linkedin.com/in/bhavanam-jagadeeswara-reddy-1b85801b6
 
 >>Opentelemetry?
 
-open-source observability framework
+open-source observability framework.
 OpenTelemetry is a set of APIs, SDKs and other components (like the OpenTelemetry Collector or Operator) designed for the 
 generation of high-quality telemetry data (traces, metrics, and logs) from cloud-native software.
-easy to collect telemetry data from your applications and infrastructure. 
+
+Easy to collect telemetry data from your applications and infrastructure. 
 This data can then be used to monitor your systems, troubleshoot problems, and improve performance.
 
 otel collector consists of
@@ -19,8 +20,11 @@ otel collector consists of
 3.exporters
 
 OpenTelemetry vs. OpenTracing 
+
 OpenTelemetry and OpenTracing are both open-source projects that provide tools and APIs for instrumentation data management.
+
 i)OpenTracing is an API for generating trace data. It supports several popular tracing backends, including Jaeger and Zipkin.
+
 ii)OpenTelemetry, on the other hand, is a merger of OpenTracing and another project – OpenCensus. Unlike OpenTracing, 
 OpenTelemetry supports multiple telemetry data types: traces, metrics, and logs.
 
