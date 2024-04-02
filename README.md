@@ -223,55 +223,7 @@ o/p:
 
 NOTE: similarly add LOKI and TEMPO enpoints to Grafana
 
-Ms Teams Authentication:
----
 
-1.open grafana alert --> contact points -->type alert name
-
-2.In integration select required option(example:ms teams)
-
-3. Go to Teams --> create a channel for alerts --> click on 3 dots
-
-4.Go to connectors --> click on incoming webhook configure --> Type name
-
-5.click on create --> copy link --> paste in grafana alert url --> test
-
-6.We will get default test notification
-
-SMTP email connection:
---
-
-Using AWS SES:
---
-
-1.open AWS SES --> Go to Verified Identities --> create a new identitie with mail
-
-2.Identity type 1.domain 2.email prefer what you need for task --> click on create identitie.
-
-3.we can see mail address is in pending, we need to approve our req which we will receive in register mail --> click on accept link --> show verified
-
-4.We can send Test alert using send test email option.
-
-Creation on SMTP user and Password:
---
-
-1. click on SMTP settings --> create new SMTP credentials
-   
-2.set custom user name or default -->create user --> download file.csv
-
-3.In smtp setting we can see endpoint and ports.
-
-
-Using personal Gmail:
----
-
-1.open Gmail settings --> go to security 
-
-2.Enable 2-step verification --> Inside we can see app passwords.
-
-3.click on App password --> selete other --> Type Name --> create .
-
-4.WE can see 16 letter Password save it.
 
 Integration with Grafana:
 ---
@@ -367,6 +319,56 @@ Creation of Alerts using logs and Metrics:
 Note: Time should be same in pending period and Evalution group
 
 8.In Add annotations we can add summary and description of Alert
+
+Ms Teams Authentication:
+---
+
+1.open grafana alert --> contact points -->type alert name
+
+2.In integration select required option(example:ms teams)
+
+3. Go to Teams --> create a channel for alerts --> click on 3 dots
+
+4.Go to connectors --> click on incoming webhook configure --> Type name
+
+5.click on create --> copy link --> paste in grafana alert url --> test
+
+6.We will get default test notification
+
+SMTP email connection:
+--
+
+Using AWS SES:
+--
+
+1.open AWS SES --> Go to Verified Identities --> create a new identitie with mail
+
+2.Identity type 1.domain 2.email prefer what you need for task --> click on create identitie.
+
+3.we can see mail address is in pending, we need to approve our req which we will receive in register mail --> click on accept link --> show verified
+
+4.We can send Test alert using send test email option.
+
+Creation on SMTP user and Password:
+--
+
+1. click on SMTP settings --> create new SMTP credentials
+   
+2.set custom user name or default -->create user --> download file.csv
+
+3.In smtp setting we can see endpoint and ports.
+
+
+Using personal Gmail:
+---
+
+1.open Gmail settings --> go to security 
+
+2.Enable 2-step verification --> Inside we can see app passwords.
+
+3.click on App password --> selete other --> Type Name --> create .
+
+4.WE can see 16 letter Password save it.
 
 9.Save the Alert               
 
