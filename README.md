@@ -193,7 +193,7 @@ OnlineBoutique application:
 ---
 clone https://github.com/jagadeeshreddy280/microservice-app.git in ec2.
 
-Go to helm-chat 
+Go to /helm-chat directory
 
 helm install app . -n app
 
