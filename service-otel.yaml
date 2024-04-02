@@ -1,0 +1,19 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: otel-prom
+  labels:
+    release: prometheus
+spec:
+  endpoints:
+  - interval: 5s
+    port: metric
+    path: metrics
+  - interval: 5s
+    port: log
+    path: logs
+  selector:
+    matchLabels:
+      app.kubernetes.io/component: opentelemetry-collector
+        #      app.kubernetes.io/instance: default.simplest
+      app.kubernetes.io/instance: otel.otel-collector
