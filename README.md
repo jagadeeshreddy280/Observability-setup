@@ -35,7 +35,7 @@ Order for setting up the platform for monitoring
 ------------
 
 Grafana & Prometheus Installation:
-
+-----------------------------------------------
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
 
 helm search repo prometheus-community
@@ -50,9 +50,11 @@ LAST DEPLOYED: Tue Aug  8 04:31:08 2023
 NAMESPACE: jagadeesh
 STATUS: deployed
 REVISION: 1
+
 NOTES:
 kube-prometheus-stack has been installed. Check its status by running:
-  kubectl --namespace jagadeesh get pods -l "release=stable"
+
+kubectl --namespace jagadeesh get pods -l "release=stable"
 
 kubectl get pods -n jagadeesh
 
@@ -74,43 +76,66 @@ password: prom-operator
 
 type password and login u can see dashboard
 
------------------------------------------------
 Loki installation:
+-----------------------------------------------
 -->helm repo add grafana https://grafana.github.io/helm-charts
+
 -->kubectl create ns loki
+
 -->helm install loki grafana/loki-distributed -n loki
+
 -->kubectl get all -n loki
 
 NOTE:
 create ingress for service/loki-distributed-query-frontend
+
 replace ingress url in otel.yaml
+
 example:
+
 loki:
   endpoint: http://k8s-loki-loki-17c4ba30dc-1324281432.us-east-1.elb.amazonaws.com/loki/api/v1/push
 
 Mimir installation:
+---
 -->helm repo add grafana https://grafana.github.io/helm-charts
+
 -->kubectl create ns mimir
+
 -->helm install mimir grafana/mimir-distributed -n mimir
+
 NOTE:
+
 -->add http://mimir-nginx.jagadeesh.svc:80/prometheus in otel collector
 
 Tempo installation:
+---
 -->helm repo update
+
 -->helm repo add grafana https://grafana.github.io/helm-charts
+
 -->kubectl create ns tempo
--->helm install my-tempo grafana/tempo -n tempo
--->helm -n tempo install tempo grafana/tempo-distributed 
+
+-->helm install my-tempo grafana/tempo -n tempo         ##static tempo
+
+-->helm -n tempo install tempo grafana/tempo-distributed     ##distributed tempo
 
 Traces we need application:
+---
 link for Reference: https://medium.com/opentelemetry/deploying-the-opentelemetry-collector-on-kubernetes-2256eca569c9
+
 deploy app.yaml 
+
 -->kubectl port-forward deployment/myapp 8080 -n app &
+
 hitting the application
+
 -->curl localhost:8080/order
+
 kubectl port-forward deployment/myapp 8081:8080 -n tempo  &
 
 Otel installation & integration with Loki,prometheus,mimir,tempo:
+---
 
 ##this operator need to deploy first
 kubectl apply -f https://github.com/open-telemetry/opentelemetry-operator/releases/latest/download/opentelemetry-operator.yaml
@@ -119,15 +144,168 @@ OTEL Deployment:
 otel.yaml   rbac.yaml   service.yaml
 
 kubectl apply -f rbac.yaml -n otel
+
 ***check otelcontribcol is deployed on service account
+
 kubectl get sa -n otel
+
 kubectl apply -f otel.yaml
+
 kubectl get all -n otel
 
 Replace loki,mimir,otel url in otel.yaml 
+
 kubectl replace otel.yaml -n otel
 
 add http://my-tempo.tempo.svc.cluster.local:4317 in otlp.yaml
+
+Ms Teams Authentication:
+---
+
+1.open grafana alert --> contact points -->type alert name
+
+2.In integration select required option(example:ms teams)
+
+3. Go to Teams --> create a channel for alerts --> click on 3 dots
+
+4.Go to connectors --> click on incoming webhook configure --> Type name
+
+5.click on create --> copy link --> paste in grafana alert url --> test
+
+6.We will get default test notification
+
+SMTP email connection:
+--
+
+Using AWS SES:
+--
+
+1.open AWS SES --> Go to Verified Identities --> create a new identitie with mail
+
+2.Identity type 1.domain 2.email prefer what you need for task --> click on create identitie.
+
+3.we can see mail address is in pending, we need to approve our req which we will receive in register mail --> click on accept link --> show verified
+
+4.We can send Test alert using send test email option.
+
+Creation on SMTP user and Password:
+--
+
+1. click on SMTP settings --> create new SMTP credentials
+   
+2.set custom user name or default -->create user --> download file.csv
+
+3.In smtp setting we can see endpoint and ports.
+
+
+Using personal Gmail:
+---
+
+1.open Gmail settings --> go to security 
+
+2.Enable 2-step verification --> Inside we can see app passwords.
+
+3.click on App password --> selete other --> Type Name --> create .
+
+4.WE can see 16 letter Password save it.
+
+Integration with Grafana:
+---
+
+1. open grafana --> Go to config file
+
+2.In grafana.ini --> we can see smtp: --> we need to add data like this
+AWS cred:
+
+  smtp:
+    enabled: true
+    host: email-smtp.us-west-2.amazonaws.com:587
+    startTLS_policy: MandatoryStartTLS
+    skip_verify: true
+    user: AKIAVU2RHDV            ## we need to replace username
+    password: BMULk1hQU4VdEWR    ## we need to replace password
+    from_address: ses-smtp-user.2023090         
+    from_name: Grafana
+    
+personal Gmail:
+
+  smtp:
+    enabled: true
+    host: smtp.gmail.com:465
+    startTLS_policy: MandatoryStartTLS
+    skip_verify: true
+    user: jagadeesh@gmail.com
+    password: 16 letter password
+    from_address: jagadeesh@gmail.com
+    from_name: Grafana
+
+3.save and exit the grafana.yaml
+
+4.helm upgrade --install grafana grafana/grafana -f grafana.yaml -n grafana
+
+5.open grafana alert --> contact points -->type alert name
+
+6.In integration select required option(example:Email)
+
+7.Type required emails to send alerts --> test
+
+8.We will get default test notification
+
+Creating a Dashboard:
+---
+
+1.Go to Dashboard --> click on New --> Create a Folder 
+
+2.Again click on New --> new Dashboard --> Dashboard setting 
+
+3.Type Name --> select folder --> save Dashboard
+
+Creating a panel for Dashboard:
+---
+
+1.Inside Dashboard --> click on Add --> visualization
+
+2.we can see all details .
+
+3.select correct Datasource for panal creation in Datasource section.
+
+4.We have Two options to write query 1.Builder 2.code
+
+5.In builder we need to select label and Value for filter data.
+
+6.In code we use Promql query.
+
+Example : {namespace="app"} | logfmt
+
+7.Right side we can select differt graphs and options.
+
+8.click on save --> apply
+
+9.Now Go to Dashboard we can see a panel with data representation. 
+
+
+Creation of Alerts using logs and Metrics:
+---
+
+1.Go To dashboard --> select panel for alert 
+
+2.Above datasource we have 3 options like 1.query 2.transform 3.Alert
+
+3.click on Alert --> click on create alert rule from this panel
+
+4.Type Rule Name --> select duration -->click on  run queries --> check Threshold Normal or firing
+
+5.Go to Set alert evaluation behavior --> select folder --> select Evaluation group
+
+6.If folder or evaluation group not present, create new 
+
+7.In pending period select time
+Note: Time should be same in pending period and Evalution group
+
+8.In Add annotations we can add summary and description of Alert
+
+9.Save the Alert               
+
 
 
 
