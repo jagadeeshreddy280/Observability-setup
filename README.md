@@ -42,16 +42,14 @@ OpenTelemetry supports multiple telemetry data types: traces, metrics, and logs.
 
 6.Alerts                 : MS Teams,Pager Duty, Email
 
-7.Automation       -     : Terraform
-
-8.Storing data           : Amazon S3
+7.Storing data           : Amazon S3
 
 ------------------------------------------------------------------------------
 Order for setting up the platform for monitoring
 
 >>Need to insatll eks cluster,enable cluster-autoscalar,loadbalancer
 
->>Install Kubectl,helm,Terraform
+>>Install Kubectl,helm,git
 
 1.Grafana
 2.loki
