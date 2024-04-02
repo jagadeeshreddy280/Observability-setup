@@ -1,4 +1,5 @@
 ##Obeservability platform Used to Track the Logs, Metrics, Traces Of the Application.
+
 1.cloud platform         :   AWS
 2.logs                   :   Loki
 3.Metrics                : Prometheus,Mimir
