@@ -189,6 +189,18 @@ kubectl replace otel.yaml -n otel
 
 add http://my-tempo.tempo.svc.cluster.local:4317 in otlp.yaml
 
+OnlineBoutique application:
+---
+clone https://github.com/jagadeeshreddy280/microservice-app.git in ec2.
+
+Go to helm-chat 
+
+helm install app . -n app
+
+kubectl get all -n app
+
+copy service url in google u can access it. check logs in Grafana dashbord in namespace app.
+
 Adding Endpoint to Grafana for logs,metrics & Traces:
 ---
 -->Sign in using the default username admin and password prom-operator.
