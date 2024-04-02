@@ -1,0 +1,77 @@
+apiVersion: opentelemetry.io/v1alpha1
+kind: OpenTelemetryCollector
+metadata:
+  name: otel-collector
+spec:
+  image: otel/opentelemetry-collector-contrib-dev:latest
+  serviceAccount: otelcontribcol
+  mode: daemonset
+  hostNetwork: true
+  ports:
+    - name: metric
+      port: 9090
+      targetPort: 9090
+      protocol: TCP
+    - name: log
+      port: 3500
+      targetPort: 3500
+      protocol: TCP
+    - name: trace
+      port: 55680
+      targetPort: 55680
+      protocol: TCP
+  env:
+    - name: K8S_NODE_NAME
+      valueFrom:
+        fieldRef:
+          fieldPath: spec.nodeName
+  config: |
+    receivers:
+      otlp:
+        protocols:
+          http:
+          grpc:
+      loki:
+        protocols:
+          http:
+        use_incoming_timestamp: true
+      
+
+    processors:
+      batch:
+      attributes:
+        actions:
+          - action: insert
+            key: loki.attribute.labels
+            value: container, namespace, pod
+          - action: insert
+            key: loki.format
+            value: raw
+    exporters:
+      loki:
+        endpoint: http://k8s-loki-loki-e0c703.us-west-2.elb.amazonaws.com/loki/api/v1/push
+      prometheusremotewrite:
+        external_labels:
+          cluster: 'avaloqcluster'
+        endpoint: 'http://k8s-mimir-mimir-b9680.us-west-2.elb.amazonaws.com:80/api/v1/push'
+      logging:
+        loglevel: info
+      otlp:
+        endpoint: "http://a91c4a7c2a-2067075200.us-west-2.elb.amazonaws.com:4317"
+        tls:
+          insecure: true       
+          insecure_skip_verify: true
+    service:
+      pipelines:
+        logs:
+          receivers: [loki]
+          processors: [attributes]
+          exporters: [loki]
+        metrics/prod:
+          receivers: [prometheus]
+          processors: [batch]
+          exporters: [prometheusremotewrite]
+        traces:
+          receivers: [otlp]
+          processors: [batch]
+          exporters: [otlp]
