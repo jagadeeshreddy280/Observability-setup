@@ -1,3 +1,10 @@
+Any Queries related 
+---
+Gmail : jagadeeshbhavanam@gmail.com
+---
+linkedin : https://www.linkedin.com/in/bhavanam-jagadeeswara-reddy-1b85801b6
+---
+
 ##Obeservability platform Used to Track the Logs, Metrics, Traces Of the Application.
 ---
 1.cloud platform         :   AWS
@@ -158,6 +165,28 @@ Replace loki,mimir,otel url in otel.yaml
 kubectl replace otel.yaml -n otel
 
 add http://my-tempo.tempo.svc.cluster.local:4317 in otlp.yaml
+
+Adding Endpoint to Grafana for logs,metrics & Traces:
+---
+-->Sign in using the default username admin and password prom-operator.
+
+-->On the left-hand side, go to Configuration > Data sources.
+
+-->add new data source (prometheus) and rename to mimir
+
+-->add url of mimir like(http://mimir-nginx.jagadeesh.svc:80/prometheus)
+   it will be available at creation of mimir 
+   
+-->save and test 
+
+o/p:
+
+-->Successfully queried the Prometheus API.
+
+   Next, you can start to visualize data by building a dashboard, or by querying data
+   in the Explore view.
+
+NOTE: similarly add LOKI and TEMPO enpoints to Grafana
 
 Ms Teams Authentication:
 ---
