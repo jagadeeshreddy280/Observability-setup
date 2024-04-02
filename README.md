@@ -33,11 +33,17 @@ Order for setting up the platform for monitoring
 8.aws-load-balancer-controller
 9.kube_state_metrics
 ------------
+
 Grafana & Prometheus Installation:
+
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+
 helm search repo prometheus-community
+
 kubectl create namespace jagadeesh
+
 helm install stable prometheus-community/kube-prometheus-stack -n jagadeesh
+
 o/p: 
 NAME: stable
 LAST DEPLOYED: Tue Aug  8 04:31:08 2023
@@ -49,19 +55,23 @@ kube-prometheus-stack has been installed. Check its status by running:
   kubectl --namespace jagadeesh get pods -l "release=stable"
 
 kubectl get pods -n jagadeesh
+
 kubectl get svc -n jagadeesh
 
-##In order to make prometheus and grafana available outside the cluster, use 
-  LoadBalancer or NodePort instead of ClusterIP.
+##In order to make prometheus and grafana available outside the cluster, use LoadBalancer or NodePort instead of ClusterIP.
+
 kubectl edit svc stable-kube-prometheus-sta-prometheus -n jagadeesh
+
 kubectl edit svc stable-grafana -n jagadeesh
 
 >>open loadbalancer url in google
+>>
 checking password:
 -->kubectl get secret --namespace jagadeesh stable-grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
 
-admin
-prom-operator
+username: admin
+password: prom-operator
+
 type password and login u can see dashboard
 
 -----------------------------------------------
