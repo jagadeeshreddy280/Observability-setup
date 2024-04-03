@@ -1,0 +1,122 @@
+>>What is Grafana?
+Grafana is an open-source data analytics tool for gathering metrics that make sense of enormous volumes of data and 
+monitoring our applications via cool configurable dashboards. 
+Grafana connects to Graphite, Prometheus, Influx DB, ElasticSearch, MySQL, PostgreSQL, and other databases.
+
+>>Panels and Dashboards in Grafana:
+  - Panels: Panels are individual visual elements that display specific data, such as graphs, tables, and single-stat metrics.
+  - Dashboards: Dashboards are collections of panels that provide a holistic view of system metrics. 
+    Dashboards are created by arranging panels and configuring their settings, queries, and visualization options.
+
+
+>>What are the features of Grafana?
+Key features of Grafana:
+i) Panels: From heatmaps to histograms. Geo maps to graphs. Grafana's visualisations are fast and flexible, 
+          allowing you to visualise your data however you want.
+ii) Plugins: Plugins for Grafana enable you to connect your tools and teams. 
+            Data source plugins link to existing data sources via APIs and render data in real-time, removing the need 
+            for data migration or ingestion.
+iii) Alerts: Grafana alerting allows you to centralise and unify all of your alerts by allowing you to create, manage, 
+             and silence them all from a single interface.
+iv) Transformations: You may rename, summarise, aggregate, and calculate data across several searches and data sources 
+                     using transformations.
+v) Annotations: Rich events from many data sources can be annotated into graphs. You may see all of an event's metadata 
+                and tags by hovering your mouse over it.
+vi) Panel Editor: With a consistent UI for configuring data settings across all of your visualizations, the panel editor 
+                  makes it simple to build, alter, and explore all of your panels.
+
+>>Data Source Integration in Grafana:
+Grafana supports integration with various data sources, such as:
+
+  - Databases (MySQL, PostgreSQL, etc.)
+
+  - Time-series databases (Prometheus, InfluxDB)
+
+  - Logging systems (Elasticsearch, Loki)
+
+  - Cloud platforms (AWS CloudWatch, Azure Monitor)
+
+  - APIs and custom data sources
+
+
+>>Is it possible to use Grafana without Prometheus?
+Grafana can only access data from third-party systems like Prometheus, MySQL, Azure Monitor, and Amazon CloudWatch, 
+among others. Grafana is so dependent on other systems for data because it lacks the ability to collect data on its own, 
+whether via agents or other data pipelines.
+
+>>What type of monitoring can be done via Grafana?
+Grafana is the most widely used open-source tool for querying, visualising and alerting metrics and logs from everywhere. 
+Time-series databases like Graphite, Prometheus, Elasticsearch, OpenTSDB, and InfluxDB are used to query.
+
+>>What is Grafana Cloud?
+Grafana Cloud is a scalable, highly available, and performant observability platform for your applications and infrastructure.
+It allows you to see all of your observability data in one place, whether it's stored in Grafana Cloud Metrics or on your
+ cloud systems. With built-in support for Prometheus, Elasticsearch, and Amazon CloudWatch, all you have to do is 
+configure data sources in Grafana Cloud to start developing dashboards and querying metrics data.
+
+>>Explain Grafana Alerts
+Alerts allow you to be notified as soon as a system problem arises.
+When a condition is met, Grafana can trigger alerts through various channels (email, Slack, etc.).
+Robust and responsive notifications let you discover and resolve problems quickly, reducing service disruption.
+Grafana alerting is made up of four main elements:
+Alerting rule -An alerting rule is a set of evaluation criteria that determines whether or not an alert will be triggered. 
+          It contains one or more queries and expressions, a condition, the frequency with which the condition is evaluated,
+          and, optionally, the time over which the condition is met.
+Contact point - When the conditions of an alerting rule are met, the contact point is used to deliver notifications.
+Notification policy - A set of matching and grouping criteria used to define where and how often notifications should be sent.
+Silences - When a notice is silenced, it is based on the date and matching criteria.
+
+>>What's the best way to check if the Grafana service is running or not?
+sudo systemctl status grafana-server
+
+>>What Is Prometheus Grafana?
+Prometheus is an open-source data monitoring tool. 
+Grafana is used to visualize the data, and Prometheus is used to fuel the backend.
+Prometheus, on the other hand, has data visualization options. 
+Grafana, on the other hand, continues to be the most often used data visualization tool. 
+
+>>What is Grafana Loki and How does it work?
+Grafana Loki is a log aggregation tool that collects and organizes logs from all of your apps and infrastructure. 
+It offers a unique approach by indexing only the metadata of the log lines rather than the complete text.
+
+>>Why use Grafana Loki?
+you may distribute logs in any format, from any source, and through a number of clients
+With 100 per cent persistence to object storage, you get petabyte-scale, fast throughput, cost-effective & durable storage.
+log lines can be used to create metrics and alarms.
+
+>>What is a label in Grafana?
+Labels are a type of key-value pair. 
+To describe a log stream, we call them metadata. Labels are particularly crucial in Loki since they define a stream. 
+More precisely, the stream is defined by the combination of each label key and value.
+
+>>Loki's Relationship with Promtail:
+Promtail is an agent that gathers logs from various sources and sends them to Loki for storage. 
+It can be installed on nodes, containers, or other log-producing entities. 
+Promtail enhances Loki's efficiency by ensuring logs are collected and forwarded in an optimized manner, reducing the 
+load on both the log producers and the Loki infrastructure.
+
+>>What is Grafana Tempo?
+Grafana Tempo is an open-source and user-friendly high-volume distributed tracing backend. 
+Tempo is a low-cost operating system that only requires object storage and is strongly integrated with Grafana, 
+Prometheus, and Loki. 
+Tempo supports open-source tracing protocols such as Jaeger, Zipkin, and OpenTelemetry.
+
+>>Opentelemetry?
+open-source observability framework
+OpenTelemetry is a set of APIs, SDKs and other components (like the OpenTelemetry Collector or Operator) designed for the 
+generation of high-quality telemetry data (traces, metrics, and logs) from cloud-native software.
+easy to collect telemetry data from your applications and infrastructure. 
+This data can then be used to monitor your systems, troubleshoot problems, and improve performance.
+
+otel collector consists of
+1.receivers
+2.processers
+3.exporters
+
+OpenTelemetry vs. OpenTracing 
+OpenTelemetry and OpenTracing are both open-source projects that provide tools and APIs for instrumentation data management.
+i)OpenTracing is an API for generating trace data. It supports several popular tracing backends, including Jaeger and Zipkin.
+ii)OpenTelemetry, on the other hand, is a merger of OpenTracing and another project – OpenCensus. Unlike OpenTracing, 
+OpenTelemetry supports multiple telemetry data types: traces, metrics, and logs.
+
+
