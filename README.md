@@ -232,25 +232,41 @@ Integration with Grafana:
 AWS cred:
 
   smtp:
+  
     enabled: true
+    
     host: email-smtp.us-west-2.amazonaws.com:587
+    
     startTLS_policy: MandatoryStartTLS
+    
     skip_verify: true
+    
     user: AKIAVU2RHDV            ## we need to replace username
+    
     password: BMULk1hQU4VdEWR    ## we need to replace password
-    from_address: ses-smtp-user.2023090         
+    
+    from_address: ses-smtp-user.2023090      
+    
     from_name: Grafana
     
 personal Gmail:
 
   smtp:
+  
     enabled: true
+    
     host: smtp.gmail.com:465
+    
     startTLS_policy: MandatoryStartTLS
+    
     skip_verify: true
+    
     user: jagadeesh@gmail.com
+    
     password: 16 letter password
+    
     from_address: jagadeesh@gmail.com
+    
     from_name: Grafana
 
 3.save and exit the grafana.yaml
