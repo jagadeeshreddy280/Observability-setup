@@ -44,6 +44,8 @@ OpenTelemetry supports multiple telemetry data types: traces, metrics, and logs.
 
 7.Storing data           : Amazon S3
 
+8.Monitoring             : Grafana
+
 ------------------------------------------------------------------------------
 Order for setting up the platform for monitoring
 
@@ -122,7 +124,7 @@ replace ingress url in otel.yaml
 example:
 
 loki:
-  endpoint: http://k8s-loki-loki-17c4ba30dc-1324281432.us-east-1.elb.amazonaws.com/loki/api/v1/push
+  endpoint: http://k8s-loki-loki-17c4ba30dc-13242.us-east-1.elb.amazonaws.com/loki/api/v1/push
 
 Mimir installation:
 ---
