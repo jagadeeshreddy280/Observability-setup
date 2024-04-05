@@ -64,6 +64,7 @@ Order for setting up the platform for monitoring
 9.kube_state_metrics
 ------------
 
+Step 1:
 Grafana & Prometheus Installation:
 -----------------------------------------------
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
@@ -106,6 +107,7 @@ password: prom-operator
 
 type password and login u can see dashboard
 
+Step 2:
 Loki installation:
 -----------------------------------------------
 -->helm repo add grafana https://grafana.github.io/helm-charts
@@ -126,6 +128,7 @@ example:
 loki:
   endpoint: http://k8s-loki-loki-17c4ba30dc-13242.us-east-1.elb.amazonaws.com/loki/api/v1/push
 
+Step 3:
 Mimir installation:
 ---
 -->helm repo add grafana https://grafana.github.io/helm-charts
@@ -138,6 +141,7 @@ NOTE:
 
 -->add http://mimir-nginx.jagadeesh.svc:80/prometheus in otel collector
 
+step 4:
 Tempo installation:
 ---
 -->helm repo update
@@ -150,7 +154,8 @@ Tempo installation:
 
 -->helm -n tempo install tempo grafana/tempo-distributed     ##distributed tempo
 
-Traces we need application:
+Step 5:
+Traces we need application, deploy an application :
 ---
 link for Reference: https://medium.com/opentelemetry/deploying-the-opentelemetry-collector-on-kubernetes-2256eca569c9
 
@@ -164,6 +169,7 @@ hitting the application
 
 kubectl port-forward deployment/myapp 8081:8080 -n tempo  &
 
+Step 6: 
 Otel installation & integration with Loki,prometheus,mimir,tempo:
 ---
 
@@ -189,6 +195,7 @@ kubectl replace otel.yaml -n otel
 
 add http://my-tempo.tempo.svc.cluster.local:4317 in otlp.yaml
 
+Step 7:
 OnlineBoutique application:
 ---
 clone https://github.com/jagadeeshreddy280/microservice-app.git in ec2.
@@ -201,6 +208,7 @@ kubectl get all -n app
 
 copy service url in google u can access it. check logs in Grafana dashbord in namespace app.
 
+Step 8:
 Adding Endpoint to Grafana for logs,metrics & Traces:
 ---
 -->Sign in using the default username admin and password prom-operator.
@@ -223,9 +231,10 @@ o/p:
 
 NOTE: similarly add LOKI and TEMPO enpoints to Grafana
 
+Upto Step 8 we are done with setup, we integrate with Grafana.
 
-
-Integration with Grafana:
+Step 9:
+Integration with Grafana via Email or MsTeams:
 ---
 
 1. open grafana --> Go to config file
@@ -283,74 +292,6 @@ personal Gmail:
 
 8.We will get default test notification
 
-Creating a Dashboard:
----
-
-1.Go to Dashboard --> click on New --> Create a Folder 
-
-2.Again click on New --> new Dashboard --> Dashboard setting 
-
-3.Type Name --> select folder --> save Dashboard
-
-Creating a panel for Dashboard:
----
-
-1.Inside Dashboard --> click on Add --> visualization
-
-2.we can see all details .
-
-3.select correct Datasource for panal creation in Datasource section.
-
-4.We have Two options to write query 1.Builder 2.code
-
-5.In builder we need to select label and Value for filter data.
-
-6.In code we use Promql query.
-
-Example : {namespace="app"} | logfmt
-
-7.Right side we can select differt graphs and options.
-
-8.click on save --> apply
-
-9.Now Go to Dashboard we can see a panel with data representation. 
-
-
-Creation of Alerts using logs and Metrics:
----
-
-1.Go To dashboard --> select panel for alert 
-
-2.Above datasource we have 3 options like 1.query 2.transform 3.Alert
-
-3.click on Alert --> click on create alert rule from this panel
-
-4.Type Rule Name --> select duration -->click on  run queries --> check Threshold Normal or firing
-
-5.Go to Set alert evaluation behavior --> select folder --> select Evaluation group
-
-6.If folder or evaluation group not present, create new 
-
-7.In pending period select time
-Note: Time should be same in pending period and Evalution group
-
-8.In Add annotations we can add summary and description of Alert
-
-Ms Teams Authentication:
----
-
-1.open grafana alert --> contact points -->type alert name
-
-2.In integration select required option(example:ms teams)
-
-3. Go to Teams --> create a channel for alerts --> click on 3 dots
-
-4.Go to connectors --> click on incoming webhook configure --> Type name
-
-5.click on create --> copy link --> paste in grafana alert url --> test
-
-6.We will get default test notification
-
 SMTP email connection:
 --
 
@@ -386,7 +327,80 @@ Using personal Gmail:
 
 4.WE can see 16 letter Password save it.
 
-9.Save the Alert               
+9.Save the Alert       
+
+Ms Teams Authentication:
+---
+
+1.open grafana alert --> contact points -->type alert name
+
+2.In integration select required option(example:ms teams)
+
+3. Go to Teams --> create a channel for alerts --> click on 3 dots
+
+4.Go to connectors --> click on incoming webhook configure --> Type name
+
+5.click on create --> copy link --> paste in grafana alert url --> test
+
+6.We will get default test notification
+
+
+Step 10:
+Creating a Dashboard:
+---
+
+1.Go to Dashboard --> click on New --> Create a Folder 
+
+2.Again click on New --> new Dashboard --> Dashboard setting 
+
+3.Type Name --> select folder --> save Dashboard
+
+Step 11:
+Creating a panel for Dashboard:
+---
+
+1.Inside Dashboard --> click on Add --> visualization
+
+2.we can see all details .
+
+3.select correct Datasource for panal creation in Datasource section.
+
+4.We have Two options to write query 1.Builder 2.code
+
+5.In builder we need to select label and Value for filter data.
+
+6.In code we use Promql query.
+
+Example : {namespace="app"} | logfmt
+
+7.Right side we can select differt graphs and options.
+
+8.click on save --> apply
+
+9.Now Go to Dashboard we can see a panel with data representation. 
+
+Step 12:
+Creation of Alerts using logs and Metrics:
+---
+
+1.Go To dashboard --> select panel for alert 
+
+2.Above datasource we have 3 options like 1.query 2.transform 3.Alert
+
+3.click on Alert --> click on create alert rule from this panel
+
+4.Type Rule Name --> select duration -->click on  run queries --> check Threshold Normal or firing
+
+5.Go to Set alert evaluation behavior --> select folder --> select Evaluation group
+
+6.If folder or evaluation group not present, create new 
+
+7.In pending period select time
+Note: Time should be same in pending period and Evalution group
+
+8.In Add annotations we can add summary and description of Alert
+
+
 
 
 
