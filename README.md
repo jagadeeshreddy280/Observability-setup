@@ -78,24 +78,30 @@ helm install stable prometheus-community/kube-prometheus-stack -n grafana
 ```
 
 o/p: 
+
 NAME: stable
+
 LAST DEPLOYED: Tue Aug  8 04:31:08 2023
+
 NAMESPACE: grafana
+
 STATUS: deployed
+
 REVISION: 1
 
 NOTES:
 kube-prometheus-stack has been installed. Check its status by running:
 
+```
 kubectl --namespace grafana get pods -l "release=stable"
-
+```
 ```
 kubectl get pods -n grafana
 
 kubectl get svc -n grafana
 ```
 
-##In order to make prometheus and grafana available outside the cluster, use LoadBalancer or NodePort instead of ClusterIP.
+>>In order to make prometheus and grafana available outside the cluster, use LoadBalancer or NodePort instead of ClusterIP.
 
 ```
 kubectl edit svc stable-kube-prometheus-sta-prometheus -n grafana
@@ -118,13 +124,15 @@ type password and login u can see dashboard
 Step 2:
 Loki installation:
 -----------------------------------------------
--->helm repo add grafana https://grafana.github.io/helm-charts
+```
+helm repo add grafana https://grafana.github.io/helm-charts
 
--->kubectl create ns loki
+kubectl create ns loki
 
--->helm install loki grafana/loki-distributed -n loki
+helm install loki grafana/loki-distributed -n loki
 
--->kubectl get all -n loki
+kubectl get all -n loki
+```
 
 NOTE:
 create ingress for service/loki-distributed-query-frontend
@@ -132,35 +140,38 @@ create ingress for service/loki-distributed-query-frontend
 replace ingress url in otel.yaml
 
 example:
-
+```
 loki:
   endpoint: http://k8s-loki-loki-17c4ba30dc-13242.us-east-1.elb.amazonaws.com/loki/api/v1/push
-
+```
 Step 3:
 Mimir installation:
 ---
--->helm repo add grafana https://grafana.github.io/helm-charts
+```
+helm repo add grafana https://grafana.github.io/helm-charts
 
--->kubectl create ns mimir
+kubectl create ns mimir
 
--->helm install mimir grafana/mimir-distributed -n mimir
-
+helm install mimir grafana/mimir-distributed -n mimir
+```
 NOTE:
-
+```
 -->add http://mimir-nginx.jagadeesh.svc:80/prometheus in otel collector
-
+```
 step 4:
 Tempo installation:
 ---
--->helm repo update
+```
+helm repo update
 
--->helm repo add grafana https://grafana.github.io/helm-charts
+helm repo add grafana https://grafana.github.io/helm-charts
 
--->kubectl create ns tempo
+kubectl create ns tempo
 
--->helm install my-tempo grafana/tempo -n tempo         ##static tempo
+helm install my-tempo grafana/tempo -n tempo         ##static tempo
 
--->helm -n tempo install tempo grafana/tempo-distributed     ##distributed tempo
+helm -n tempo install tempo grafana/tempo-distributed     ##distributed tempo
+```
 
 <img width="795" alt="Screenshot 2024-04-05 105451" src="https://github.com/jagadeeshreddy280/Observability-setup/assets/116871383/3f55b5f5-f847-42d8-ba43-a4faa4bae0c1">
 
@@ -171,15 +182,15 @@ Traces we need application, deploy an application :
 link for Reference: https://medium.com/opentelemetry/deploying-the-opentelemetry-collector-on-kubernetes-2256eca569c9
 
 deploy app.yaml 
-
--->kubectl port-forward deployment/myapp 8080 -n app &
-
+```
+kubectl port-forward deployment/myapp 8080 -n app &
+```
 hitting the application
 
--->curl localhost:8080/order
-
+curl localhost:8080/order
+```
 kubectl port-forward deployment/myapp 8081:8080 -n tempo  &
-
+```
 Step 6: 
 Otel installation & integration with Loki,prometheus,mimir,tempo:
 ---
