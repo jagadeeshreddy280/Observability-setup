@@ -53,6 +53,50 @@ Order for setting up the platform for monitoring
 
 >>Install Kubectl,helm,git
 
+Terraform Installation:
+---
+```
+curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
+
+sudo apt-add-repository "deb [arch=$(dpkg --print-architecture)] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
+
+sudo apt update
+
+sudo apt install terraform
+```
+
+Helm installation:
+---
+
+```
+curl https://baltocdn.com/helm/signing.asc | gpg --dearmor | sudo tee /usr/share/keyrings/helm.gpg > /dev/null
+
+sudo apt-get install apt-transport-https --yes
+
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/helm.gpg] https://baltocdn.com/helm/stable/debian/ all main" | sudo tee /etc/apt/sources.list.d/helm-stable-debian.list
+
+sudo apt-get update
+
+sudo apt-get install helm
+```
+Kubectl Installtion & Adding Eks cluster:
+---
+```
+curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl
+
+chmod +x ./kubectl
+
+sudo mv ./kubectl /usr/local/bin/kubectl
+
+kubectl version
+```
+Update EKS cluster information 
+
+```
+aws eks update-kubeconfig --region us-east-1 --name avaloqEKScluster
+```
+
+
 1.Grafana
 2.loki
 3.promtail
@@ -69,12 +113,19 @@ Grafana & Prometheus Installation:
 -----------------------------------------------
 ```
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
-
+```
+![image](https://github.com/jagadeeshreddy280/Observability-setup/assets/116871383/e1fbd164-8f66-4f3f-a833-ce798dbda203)
+```
 helm search repo prometheus-community
+```
+![image](https://github.com/jagadeeshreddy280/Observability-setup/assets/116871383/bff95168-4cb5-4a2b-8f97-ac4090615715)
+```
+kubectl create namespace prometheus
+```
+![image](https://github.com/jagadeeshreddy280/Observability-setup/assets/116871383/7c36c896-7229-43c1-b46b-a1e8872de7ea)
 
-kubectl create namespace grafana
-
-helm install stable prometheus-community/kube-prometheus-stack -n grafana
+```
+helm install stable prometheus-community/kube-prometheus-stack -n prometheus
 ```
 
 o/p: 
@@ -83,7 +134,7 @@ NAME: stable
 
 LAST DEPLOYED: Tue Aug  8 04:31:08 2023
 
-NAMESPACE: grafana
+NAMESPACE: prometheus
 
 STATUS: deployed
 
@@ -93,21 +144,30 @@ NOTES:
 kube-prometheus-stack has been installed. Check its status by running:
 
 ```
-kubectl --namespace grafana get pods -l "release=stable"
+kubectl --namespace prometheus get pods -l "release=stable"
 ```
 ```
-kubectl get pods -n grafana
+kubectl get pods -n prometheus
+```
+```
+kubectl get all -n prometheus
+```
+![image](https://github.com/jagadeeshreddy280/Observability-setup/assets/116871383/ca32a1b1-9d17-482c-9e38-b4a030f3e27b)
 
-kubectl get svc -n grafana
-```
+
 
 In order to make prometheus and grafana available outside the cluster, use LoadBalancer or NodePort instead of ClusterIP.
 
 ```
-kubectl edit svc stable-kube-prometheus-sta-prometheus -n grafana
-
-kubectl edit svc stable-grafana -n grafana
+kubectl edit svc stable-kube-prometheus-sta-prometheus -n prometheus
 ```
+![image](https://github.com/jagadeeshreddy280/Observability-setup/assets/116871383/badbc633-7b19-4e7f-8d2b-fce6720ee333)
+
+```
+kubectl edit svc stable-grafana -n prometheus
+```
+![image](https://github.com/jagadeeshreddy280/Observability-setup/assets/116871383/e6a37a1f-7cf2-4498-a4a6-0394bed42e99)
+
 
 open loadbalancer url in google
 
@@ -119,6 +179,8 @@ checking password:
 username: admin
 password: prom-operator
 ```
+![image](https://github.com/jagadeeshreddy280/Observability-setup/assets/116871383/5029d656-f290-441d-9bcf-b5c9a5f7b81a)
+
 type password and login u can see dashboard
 
 Step 2:
