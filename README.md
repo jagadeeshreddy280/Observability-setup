@@ -224,8 +224,10 @@ add http://my-tempo.tempo.svc.cluster.local:4317 in otlp.yaml
 Step 7:
 OnlineBoutique application:
 ---
+
+In Ec2:
 ```
-git clone https://github.com/jagadeeshreddy280/microservice-app.git in ec2.
+git clone https://github.com/jagadeeshreddy280/microservice-app.git 
 ```
 Go to /helm-chat directory
 
