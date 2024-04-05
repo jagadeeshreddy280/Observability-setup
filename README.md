@@ -212,6 +212,7 @@ helm install app . -n app
 
 kubectl get all -n app
 
+>>
 NAME                                     READY   STATUS    RESTARTS   AGE
 adservice-76bdd69666-ckc5j               1/1     Running   0          2m58s
 cartservice-66d497c6b7-dp5jr             1/1     Running   0          2m59s
