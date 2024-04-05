@@ -72,41 +72,47 @@ helm repo add prometheus-community https://prometheus-community.github.io/helm-c
 
 helm search repo prometheus-community
 
-kubectl create namespace jagadeesh
+kubectl create namespace grafana
 
-helm install stable prometheus-community/kube-prometheus-stack -n jagadeesh
+helm install stable prometheus-community/kube-prometheus-stack -n grafana
 ```
 
 o/p: 
 NAME: stable
 LAST DEPLOYED: Tue Aug  8 04:31:08 2023
-NAMESPACE: jagadeesh
+NAMESPACE: grafana
 STATUS: deployed
 REVISION: 1
 
 NOTES:
 kube-prometheus-stack has been installed. Check its status by running:
 
-kubectl --namespace jagadeesh get pods -l "release=stable"
+kubectl --namespace grafana get pods -l "release=stable"
 
-kubectl get pods -n jagadeesh
+```
+kubectl get pods -n grafana
 
-kubectl get svc -n jagadeesh
+kubectl get svc -n grafana
+```
 
 ##In order to make prometheus and grafana available outside the cluster, use LoadBalancer or NodePort instead of ClusterIP.
 
-kubectl edit svc stable-kube-prometheus-sta-prometheus -n jagadeesh
+```
+kubectl edit svc stable-kube-prometheus-sta-prometheus -n grafana
 
-kubectl edit svc stable-grafana -n jagadeesh
+kubectl edit svc stable-grafana -n grafana
+```
 
 >>open loadbalancer url in google
->>
-checking password:
--->kubectl get secret --namespace jagadeesh stable-grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
 
+checking password:
+```
+  kubectl get secret --namespace grafana stable-grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
+```
+```
 username: admin
 password: prom-operator
-
+```
 type password and login u can see dashboard
 
 Step 2:
