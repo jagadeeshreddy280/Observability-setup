@@ -101,7 +101,7 @@ kubectl get pods -n grafana
 kubectl get svc -n grafana
 ```
 
->>In order to make prometheus and grafana available outside the cluster, use LoadBalancer or NodePort instead of ClusterIP.
+In order to make prometheus and grafana available outside the cluster, use LoadBalancer or NodePort instead of ClusterIP.
 
 ```
 kubectl edit svc stable-kube-prometheus-sta-prometheus -n grafana
@@ -109,7 +109,7 @@ kubectl edit svc stable-kube-prometheus-sta-prometheus -n grafana
 kubectl edit svc stable-grafana -n grafana
 ```
 
->>open loadbalancer url in google
+open loadbalancer url in google
 
 checking password:
 ```
@@ -196,25 +196,26 @@ Otel installation & integration with Loki,prometheus,mimir,tempo:
 ---
 
 ##this operator need to deploy first
+```
 kubectl apply -f https://github.com/open-telemetry/opentelemetry-operator/releases/latest/download/opentelemetry-operator.yaml
-
+```
 OTEL Deployment:
 otel.yaml   rbac.yaml   service.yaml
-
+```
 kubectl apply -f rbac.yaml -n otel
-
+```
 ***check otelcontribcol is deployed on service account
-
+```
 kubectl get sa -n otel
 
 kubectl apply -f otel.yaml
 
 kubectl get all -n otel
-
+```
 Replace loki,mimir,otel url in otel.yaml 
-
+```
 kubectl replace otel.yaml -n otel
-
+```
 add http://my-tempo.tempo.svc.cluster.local:4317 in otlp.yaml
 
 <img width="784" alt="Screenshot 2024-04-05 105245" src="https://github.com/jagadeeshreddy280/Observability-setup/assets/116871383/ec3acda6-1d0c-4b78-97bb-26aea79ac034">
@@ -223,14 +224,15 @@ add http://my-tempo.tempo.svc.cluster.local:4317 in otlp.yaml
 Step 7:
 OnlineBoutique application:
 ---
-clone https://github.com/jagadeeshreddy280/microservice-app.git in ec2.
-
+```
+git clone https://github.com/jagadeeshreddy280/microservice-app.git in ec2.
+```
 Go to /helm-chat directory
 
 helm install app . -n app
-
+```
 kubectl get all -n app
-
+```
 ```
    NAME                                     READY   STATUS    RESTARTS   AGE
    adservice-76bdd69666-ckc5j               1/1     Running   0          2m58s
@@ -289,7 +291,7 @@ Integration with Grafana via Email or MsTeams:
 
 2.In grafana.ini --> we can see smtp: --> we need to add data like this
 AWS cred:
-
+```
   smtp:
   
     enabled: true
@@ -307,7 +309,8 @@ AWS cred:
     from_address: ses-smtp-user.2023090      
     
     from_name: Grafana
-    
+```
+```    
 personal Gmail:
 
   smtp:
@@ -327,7 +330,7 @@ personal Gmail:
     from_address: jagadeesh@gmail.com
     
     from_name: Grafana
-
+```
 3.save and exit the grafana.yaml
 
 4.helm upgrade --install grafana grafana/grafana -f grafana.yaml -n grafana
@@ -437,9 +440,9 @@ Creating a panel for Dashboard:
 5.In builder we need to select label and Value for filter data.
 
 6.In code we use Promql query.
-
+```
 Example : {namespace="app"} | logfmt
-
+```
 <img width="606" alt="Screenshot 2023-09-14 150216" src="https://github.com/jagadeeshreddy280/Observability-setup/assets/116871383/a476c5b3-e8fc-49d8-ad5d-8ddeedcb720d">
 
 
