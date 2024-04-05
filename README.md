@@ -214,6 +214,9 @@ kubectl get all -n app
 
 copy service url in google u can access it. check logs in Grafana dashbord in namespace app.
 
+![image](https://github.com/jagadeeshreddy280/Observability-setup/assets/116871383/457685e9-b172-4806-8f8e-aa79fb785c01)
+
+
 Step 8:
 Adding Endpoint to Grafana for logs,metrics & Traces:
 ---
