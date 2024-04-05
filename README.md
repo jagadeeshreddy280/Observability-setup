@@ -52,7 +52,7 @@ Order for setting up the platform for monitoring
 >>Need to insatll eks cluster,enable cluster-autoscalar,loadbalancer
 
 >>Install Kubectl,helm,git
-'''
+
 1.Grafana
 2.loki
 3.promtail
@@ -62,12 +62,12 @@ Order for setting up the platform for monitoring
 7.prometheus_node_exporter
 8.aws-load-balancer-controller
 9.kube_state_metrics
-'''
 ------------
 
 Step 1:
 Grafana & Prometheus Installation:
 -----------------------------------------------
+```
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
 
 helm search repo prometheus-community
@@ -75,6 +75,7 @@ helm search repo prometheus-community
 kubectl create namespace jagadeesh
 
 helm install stable prometheus-community/kube-prometheus-stack -n jagadeesh
+```
 
 o/p: 
 NAME: stable
