@@ -291,9 +291,6 @@ personal Gmail:
 
 3.save and exit the grafana.yaml
 
-![smtp](https://github.com/jagadeeshreddy280/Observability-setup/assets/116871383/18128b12-387e-42f0-902c-8b8d73591573)
-
-
 4.helm upgrade --install grafana grafana/grafana -f grafana.yaml -n grafana
 
 5.open grafana alert --> contact points -->type alert name
