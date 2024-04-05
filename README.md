@@ -5,6 +5,9 @@ Gmail : jagadeeshbhavanam@gmail.com
 linkedin : https://www.linkedin.com/in/bhavanam-jagadeeswara-reddy-1b85801b6
 ---
 
+Project : SetUp Observability plaform for Monitoring an Application
+---
+
 >>Opentelemetry?
 
 open-source observability framework.
