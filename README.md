@@ -93,7 +93,7 @@ kubectl version
 Update EKS cluster information 
 
 ```
-aws eks update-kubeconfig --region us-east-1 --name avaloqEKScluster
+aws eks update-kubeconfig --region us-east-1 --name EKScluster
 ```
 
 
