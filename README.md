@@ -355,17 +355,33 @@ Creating a Dashboard:
 
 3.Type Name --> select folder --> save Dashboard
 
+
+<img width="847" alt="Screenshot 2023-09-14 145625" src="https://github.com/jagadeeshreddy280/Observability-setup/assets/116871383/77c41877-1735-4afe-9850-287cb2672732">
+
+
 Step 11:
 Creating a panel for Dashboard:
 ---
 
 1.Inside Dashboard --> click on Add --> visualization
 
+<img width="601" alt="Screenshot 2023-09-14 145840" src="https://github.com/jagadeeshreddy280/Observability-setup/assets/116871383/bf56e7b4-782d-4a17-b55e-a1b6d773da49">
+
+
 2.we can see all details .
+
+<img width="905" alt="Screenshot 2023-09-14 145949" src="https://github.com/jagadeeshreddy280/Observability-setup/assets/116871383/f5ed8381-7e84-4d65-9cda-febdc9734b77">
+
 
 3.select correct Datasource for panal creation in Datasource section.
 
+<img width="271" alt="Screenshot 2023-09-14 150029" src="https://github.com/jagadeeshreddy280/Observability-setup/assets/116871383/500ddbb6-db29-42ce-a1ea-4860c16ba599">
+
+
 4.We have Two options to write query 1.Builder 2.code
+
+<img width="609" alt="Screenshot 2023-09-14 150123" src="https://github.com/jagadeeshreddy280/Observability-setup/assets/116871383/b802a648-0cd4-4e9e-b16b-710cecbbc1da">
+
 
 5.In builder we need to select label and Value for filter data.
 
@@ -373,11 +389,23 @@ Creating a panel for Dashboard:
 
 Example : {namespace="app"} | logfmt
 
+<img width="606" alt="Screenshot 2023-09-14 150216" src="https://github.com/jagadeeshreddy280/Observability-setup/assets/116871383/a476c5b3-e8fc-49d8-ad5d-8ddeedcb720d">
+
+
 7.Right side we can select differt graphs and options.
+
+<img width="294" alt="Screenshot 2023-09-15 111151" src="https://github.com/jagadeeshreddy280/Observability-setup/assets/116871383/896a9f86-c3ed-4bc6-9d5c-9c1df4599491">
+
 
 8.click on save --> apply
 
 9.Now Go to Dashboard we can see a panel with data representation. 
+
+<img width="909" alt="Screenshot 2023-09-14 150340" src="https://github.com/jagadeeshreddy280/Observability-setup/assets/116871383/50fab4c0-539b-446b-b231-62a684483700">
+
+some Dashboards for Referrence:
+
+<img width="763" alt="Screenshot 2023-09-14 152040" src="https://github.com/jagadeeshreddy280/Observability-setup/assets/116871383/790fb494-5c1f-4cbe-9302-630a6b683961">
 
 Step 12:
 Creation of Alerts using logs and Metrics:
@@ -399,6 +427,7 @@ Creation of Alerts using logs and Metrics:
 Note: Time should be same in pending period and Evalution group
 
 8.In Add annotations we can add summary and description of Alert
+
 <img width="416" alt="Screenshot 2023-09-14 143540" src="https://github.com/jagadeeshreddy280/Observability-setup/assets/116871383/6c100b02-f5c0-45e9-b0d9-7031c84dfc4d">
 
 
