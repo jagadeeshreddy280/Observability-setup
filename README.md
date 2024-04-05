@@ -230,8 +230,9 @@ In Ec2:
 git clone https://github.com/jagadeeshreddy280/microservice-app.git 
 ```
 Go to /helm-chat directory
-
+```
 helm install app . -n app
+```
 ```
 kubectl get all -n app
 ```
