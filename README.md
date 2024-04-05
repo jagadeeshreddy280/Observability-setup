@@ -154,6 +154,9 @@ Tempo installation:
 
 -->helm -n tempo install tempo grafana/tempo-distributed     ##distributed tempo
 
+<img width="795" alt="Screenshot 2024-04-05 105451" src="https://github.com/jagadeeshreddy280/Observability-setup/assets/116871383/3f55b5f5-f847-42d8-ba43-a4faa4bae0c1">
+
+
 Step 5:
 Traces we need application, deploy an application :
 ---
@@ -195,6 +198,9 @@ kubectl replace otel.yaml -n otel
 
 add http://my-tempo.tempo.svc.cluster.local:4317 in otlp.yaml
 
+<img width="784" alt="Screenshot 2024-04-05 105245" src="https://github.com/jagadeeshreddy280/Observability-setup/assets/116871383/ec3acda6-1d0c-4b78-97bb-26aea79ac034">
+
+
 Step 7:
 OnlineBoutique application:
 ---
@@ -232,6 +238,9 @@ o/p:
 NOTE: similarly add LOKI and TEMPO enpoints to Grafana
 
 Upto Step 8 we are done with setup, we integrate with Grafana.
+
+<img width="343" alt="image" src="https://github.com/jagadeeshreddy280/Observability-setup/assets/116871383/68224960-085e-4dba-9eaa-7e5ae2160620">
+
 
 Step 9:
 Integration with Grafana via Email or MsTeams:
@@ -282,6 +291,9 @@ personal Gmail:
 
 3.save and exit the grafana.yaml
 
+![smtp](https://github.com/jagadeeshreddy280/Observability-setup/assets/116871383/18128b12-387e-42f0-902c-8b8d73591573)
+
+
 4.helm upgrade --install grafana grafana/grafana -f grafana.yaml -n grafana
 
 5.open grafana alert --> contact points -->type alert name
@@ -314,6 +326,9 @@ Creation on SMTP user and Password:
 2.set custom user name or default -->create user --> download file.csv
 
 3.In smtp setting we can see endpoint and ports.
+
+<img width="646" alt="Screenshot 2023-09-14 141226" src="https://github.com/jagadeeshreddy280/Observability-setup/assets/116871383/29489395-95df-4157-a210-6e8ca9cdf4a9">
+
 
 
 Using personal Gmail:
@@ -403,6 +418,12 @@ Example : {namespace="app"} | logfmt
 
 <img width="909" alt="Screenshot 2023-09-14 150340" src="https://github.com/jagadeeshreddy280/Observability-setup/assets/116871383/50fab4c0-539b-446b-b231-62a684483700">
 
+metrics
+<img width="412" alt="Screenshot 2024-04-05 105738" src="https://github.com/jagadeeshreddy280/Observability-setup/assets/116871383/e9910476-8b71-4aa0-9ff3-e58f3afb31c0">
+
+Traces:
+<img width="821" alt="Screenshot 2024-04-05 105650" src="https://github.com/jagadeeshreddy280/Observability-setup/assets/116871383/cd65aebb-302d-4051-8173-4f787966973e">
+
 some Dashboards for Referrence:
 
 <img width="763" alt="Screenshot 2023-09-14 152040" src="https://github.com/jagadeeshreddy280/Observability-setup/assets/116871383/790fb494-5c1f-4cbe-9302-630a6b683961">
@@ -415,9 +436,15 @@ Creation of Alerts using logs and Metrics:
 
 2.Above datasource we have 3 options like 1.query 2.transform 3.Alert
 
+<img width="607" alt="Screenshot 2023-09-14 143004" src="https://github.com/jagadeeshreddy280/Observability-setup/assets/116871383/474ae933-b8f7-4e50-95e1-c3da064bd500">
+
+
 3.click on Alert --> click on create alert rule from this panel
 
 4.Type Rule Name --> select duration -->click on  run queries --> check Threshold Normal or firing
+
+<img width="685" alt="Screenshot 2023-09-14 143114" src="https://github.com/jagadeeshreddy280/Observability-setup/assets/116871383/c166ad28-7c86-42bb-a6cc-3c0d488eb2b3">
+
 
 5.Go to Set alert evaluation behavior --> select folder --> select Evaluation group
 
@@ -426,10 +453,17 @@ Creation of Alerts using logs and Metrics:
 7.In pending period select time
 Note: Time should be same in pending period and Evalution group
 
+<img width="683" alt="Screenshot 2023-09-14 143252" src="https://github.com/jagadeeshreddy280/Observability-setup/assets/116871383/710c1d62-c2ae-4ed1-98c8-caae203fdf17">
+
+
 8.In Add annotations we can add summary and description of Alert
 
 <img width="416" alt="Screenshot 2023-09-14 143540" src="https://github.com/jagadeeshreddy280/Observability-setup/assets/116871383/6c100b02-f5c0-45e9-b0d9-7031c84dfc4d">
 
+
+Alert look like this 
+
+<img width="683" alt="Screenshot 2024-04-05 110031" src="https://github.com/jagadeeshreddy280/Observability-setup/assets/116871383/ce15008a-b041-4d61-997b-28415b0fa706">
 
 
 
