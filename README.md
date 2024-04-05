@@ -399,6 +399,8 @@ Creation of Alerts using logs and Metrics:
 Note: Time should be same in pending period and Evalution group
 
 8.In Add annotations we can add summary and description of Alert
+<img width="416" alt="Screenshot 2023-09-14 143540" src="https://github.com/jagadeeshreddy280/Observability-setup/assets/116871383/6c100b02-f5c0-45e9-b0d9-7031c84dfc4d">
+
 
 
 
