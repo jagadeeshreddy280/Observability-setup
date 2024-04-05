@@ -416,12 +416,16 @@ Example : {namespace="app"} | logfmt
 
 9.Now Go to Dashboard we can see a panel with data representation. 
 
+logs:
+
 <img width="909" alt="Screenshot 2023-09-14 150340" src="https://github.com/jagadeeshreddy280/Observability-setup/assets/116871383/50fab4c0-539b-446b-b231-62a684483700">
 
-metrics
+metrics:
+
 <img width="412" alt="Screenshot 2024-04-05 105738" src="https://github.com/jagadeeshreddy280/Observability-setup/assets/116871383/e9910476-8b71-4aa0-9ff3-e58f3afb31c0">
 
 Traces:
+
 <img width="821" alt="Screenshot 2024-04-05 105650" src="https://github.com/jagadeeshreddy280/Observability-setup/assets/116871383/cd65aebb-302d-4051-8173-4f787966973e">
 
 some Dashboards for Referrence:
