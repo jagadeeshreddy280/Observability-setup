@@ -3,7 +3,6 @@
 Project : SetUp Observability plaform for Monitoring an Application
 ---
 
-
 >>Opentelemetry?
 
 open-source observability framework.
