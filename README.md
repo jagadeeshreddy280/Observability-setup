@@ -473,8 +473,6 @@ Creating a Dashboard:
 3.Type Name --> select folder --> save Dashboard
 
 
-<img width="847" alt="Screenshot 2023-09-14 145625" src="https://github.com/jagadeeshreddy280/Observability-setup/assets/116871383/77c41877-1735-4afe-9850-287cb2672732">
-
 
 Step 11:
 Creating a panel for Dashboard:
@@ -486,9 +484,6 @@ Creating a panel for Dashboard:
 
 
 2.we can see all details .
-
-<img width="905" alt="Screenshot 2023-09-14 145949" src="https://github.com/jagadeeshreddy280/Observability-setup/assets/116871383/f5ed8381-7e84-4d65-9cda-febdc9734b77">
-
 
 3.select correct Datasource for panal creation in Datasource section.
 
@@ -563,8 +558,6 @@ Creation of Alerts using logs and Metrics:
 7.In pending period select time
 Note: Time should be same in pending period and Evalution group
 
-<img width="683" alt="Screenshot 2023-09-14 143252" src="https://github.com/jagadeeshreddy280/Observability-setup/assets/116871383/710c1d62-c2ae-4ed1-98c8-caae203fdf17">
-
 
 8.In Add annotations we can add summary and description of Alert
 
@@ -573,11 +566,6 @@ Email Alert:
 
 <img width="416" alt="Screenshot 2023-09-14 143540" src="https://github.com/jagadeeshreddy280/Observability-setup/assets/116871383/6c100b02-f5c0-45e9-b0d9-7031c84dfc4d">
 
-
-Alert look like this 
----
-
-<img width="683" alt="Screenshot 2024-04-05 110031" src="https://github.com/jagadeeshreddy280/Observability-setup/assets/116871383/ce15008a-b041-4d61-997b-28415b0fa706">
 
 
 
