@@ -52,12 +52,12 @@ spec:
         endpoint: http://k8s-loki-loki-e0c703.us-west-2.elb.amazonaws.com/loki/api/v1/push
       prometheusremotewrite:
         external_labels:
-          cluster: 'avaloqcluster'
+          cluster: 'Name-cluster'
         endpoint: 'http://k8s-mimir-mimir-b9680.us-west-2.elb.amazonaws.com:80/api/v1/push'
       logging:
         loglevel: info
       otlp:
-        endpoint: "http://a91c4a7c2a-2067075200.us-west-2.elb.amazonaws.com:4317"
+        endpoint: "http://a91c4a7c2a-20700.us-west-2.elb.amazonaws.com:4317"
         tls:
           insecure: true       
           insecure_skip_verify: true
