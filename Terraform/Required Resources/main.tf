@@ -50,7 +50,7 @@ resource "helm_release" "alb-controller" {
 
 #  set {
 #      name  = "image.repository"
-#      value = "602401143452.dkr.ecr.${var.main-region}.amazonaws.com/amazon/aws-load-balancer-controller"
+#      value = "amazonaws.com/amazon/aws-load-balancer-controller"
 #  }
 
 #  set {
